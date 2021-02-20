@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Accomadation.DTOs.RoomReadDto>
+@{
+    ViewData["Title"] = "Free Rooms";
+}
+<div class="mb-3"><h2>Free Rooms</h2></div> 
+<div class="d-flex justify-content-between mb-3">
+    <div><button id="freeRoomFilter" class="btn-sm btn-outline-info mx-2">Filter</button></div>
+    <div>
+        <label> Date : </label>
+        <input type="date" name="date" id="date" class="form-control-sm" />
+    </div>
+    <div></div>
+</div>
+<hr />
+<table id="tblFreeRooms" class="table table-bordered table-responsive table-hover tbl-date-enter text-center  dt-responsive">
+    <thead>
+        <tr>
+            <th>Room No</th>
+            <th>Capacity</th>
+            <th>Filled </th>
+            <th>Remain</th>      
+            <th>Start Date</th>
+            <th>End Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @item.RoomId</td>
+                <td> @item.Capacity</td>
+                <td> @item.Filled</td>
+                <td> @item.Remain</td>
+                <td> @item.StartDate</td>                
+                <td> @item.EndDate</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+@section Scripts {
+    <script type="text/javascript">
+
+        $(() => {
+            $('#tblFreeRooms').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": true
+            });
+        });
+
+    </script>
+}
+
